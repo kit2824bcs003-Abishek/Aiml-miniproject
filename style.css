@@ -1,0 +1,137 @@
+:root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --dark: #0f172a;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #64748b;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: var(--accent-soft);
+    color: var(--accent);
+}
+
+.nav-link.active {
+    background-color: var(--accent-soft);
+    color: var(--accent);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: inherit;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.step-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 1rem;
+    border: 1px solid #f1f5f9;
+}
+
+.step-number {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: white;
+    font-weight: 800;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+}
+
+.code-container {
+    background-color: #1e1e1e;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.code-header {
+    background-color: #2d2d2d;
+    padding: 0.75rem 1rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #3d3d3d;
+}
+
+pre {
+    padding: 1.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d1d5db;
+    overflow-x: auto;
+}
+
+.token-keyword { color: #c678dd; }
+.token-function { color: #61afef; }
+.token-string { color: #98c379; }
+.token-comment { color: #5c6370; font-style: italic; }
+
+.prediction-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-ham { background-color: #dcfce7; color: #166534; }
+.badge-spam { background-color: #fee2e2; color: #991b1b; }
