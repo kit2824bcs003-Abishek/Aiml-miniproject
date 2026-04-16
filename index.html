@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Email Classifier | ML Pipeline Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col z-50">
+        <div class="p-8">
+            <div class="flex items-center gap-2 text-blue-600 font-bold text-xl tracking-tight">
+                <i data-lucide="shield-check"></i>
+                <span>SpamGuard AI</span>
+            </div>
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <a href="#overview" class="nav-link active">Overview</a>
+            <a href="#dataset" class="nav-link">Dataset Analysis</a>
+            <a href="#preprocessing" class="nav-link">Preprocessing</a>
+            <a href="#models" class="nav-link">Model Building</a>
+            <a href="#evaluation" class="nav-link">Evaluation</a>
+            <a href="#predictions" class="nav-link">Live Predictions</a>
+            <a href="#advanced" class="nav-link">Advanced Tuning</a>
+        </nav>
+        <div class="p-8 text-xs text-slate-400">
+            © 2026 Machine Learning Pipeline Report
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <header class="lg:hidden fixed top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 z-[60] px-6 py-4 flex justify-between items-center">
+        <span class="font-bold text-blue-600">SpamGuard AI</span>
+        <button id="mobile-menu-btn"><i data-lucide="menu"></i></button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 min-h-screen">
+        
+        <!-- Hero Section -->
+        <section id="overview" class="pt-32 pb-20 px-6 md:px-12 max-w-6xl">
+            <div class="badge mb-4">Project Case Study</div>
+            <h1 class="text-5xl font-bold text-slate-900 mb-6 tracking-tight">Spam Email Classification</h1>
+            <p class="text-xl text-slate-600 leading-relaxed mb-8 max-w-3xl">
+                An end-to-end machine learning pipeline leveraging the <strong>Enron Email Dataset</strong>. We utilize advanced Natural Language Processing techniques and robust classifiers to filter spam from legitimate business communication.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="stat-card">
+                    <span class="stat-label text-blue-600">Top Accuracy</span>
+                    <span class="stat-value">98.4%</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label text-emerald-600">Model Winner</span>
+                    <span class="stat-value">SVM</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label text-purple-600">Technique</span>
+                    <span class="stat-value">TF-IDF</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dataset Section -->
+        <section id="dataset" class="py-20 px-6 md:px-12 bg-white border-y border-slate-200">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="flex-1">
+                        <h2 class="section-title">Exploratory Data Analysis</h2>
+                        <p class="text-slate-600 mb-6">
+                            The Enron corpus is a benchmark in NLP. Our analysis focuses on the class distribution to ensure the models aren't biased towards the majority class.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                                <span class="text-sm font-medium">Ham (Legitimate): 50.1%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full bg-slate-300"></div>
+                                <span class="text-sm font-medium">Spam: 49.9%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preprocessing Section -->
+        <section id="preprocessing" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+            <h2 class="section-title">Data Preprocessing Pipeline</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <div>
+                            <h3 class="font-bold">Cleaning & Normalization</h3>
+                            <p class="text-sm text-slate-500">Removing punctuation, special characters, and converting to lowercase.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <div>
+                            <h3 class="font-bold">Tokenization & Stopwords</h3>
+                            <p class="text-sm text-slate-500">Splitting text into words and removing common fillers like "the", "is", "at".</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <div>
+                            <h3 class="font-bold">TF-IDF Vectorization</h3>
+                            <p class="text-sm text-slate-500">Converting text into numerical vectors based on word importance scores.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>preprocessing.py</span>
+                        <i data-lucide="copy" class="w-4 h-4 cursor-pointer"></i>
+                    </div>
+                    <pre><code id="code-preprocessing"></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluation Section -->
+        <section id="evaluation" class="py-20 px-6 md:px-12 bg-slate-900 text-white rounded-t-[3rem]">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="section-title text-white">Model Performance Metrics</h2>
+                <p class="text-slate-400 mb-12 max-w-2xl">Comparing Naive Bayes, Logistic Regression, and Support Vector Machines across four critical evaluation dimensions.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="lg:col-span-2 bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                    <div class="bg-white text-slate-900 p-8 rounded-2xl">
+                        <h4 class="font-bold mb-6 flex items-center gap-2">
+                            <i data-lucide="target" class="text-blue-600"></i>
+                            Confusion Matrix (SVM)
+                        </h4>
+                        <canvas id="confusionMatrixChart"></canvas>
+                        <p class="mt-6 text-xs text-slate-500 leading-relaxed">
+                            A Confusion Matrix displays the ratio of correct vs incorrect predictions. For Spam detection, minimizing <strong>False Positives</strong> is the top priority.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Predictions Showcase -->
+        <section id="predictions" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+            <h2 class="section-title">Model Showcase</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-200">
+                            <th class="py-4 font-semibold text-slate-400 uppercase text-xs tracking-widest">Email Content Snippet</th>
+                            <th class="py-4 font-semibold text-slate-400 uppercase text-xs tracking-widest text-center">True Label</th>
+                            <th class="py-4 font-semibold text-slate-400 uppercase text-xs tracking-widest text-center">Prediction</th>
+                            <th class="py-4 font-semibold text-slate-400 uppercase text-xs tracking-widest text-right">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prediction-rows">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Advanced Section -->
+        <section id="advanced" class="py-20 px-6 md:px-12 bg-blue-50">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="section-title">Optimization & Deployment</h2>
+                    <p class="text-slate-600 mb-8">Moving from research to production requires refining parameters and ensuring model persistence.</p>
+                    
+                    <div class="space-y-4">
+                        <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
+                            <summary class="font-semibold flex justify-between items-center">
+                                Hyperparameter Tuning
+                                <i data-lucide="chevron-down" class="group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <div class="pt-4 text-sm text-slate-500">
+                                Using <code class="bg-slate-100 px-1 rounded text-blue-600">GridSearchCV</code>, we optimized the SVM 'C' parameter to 10 and used a 'linear' kernel for the best performance balance.
+                            </div>
+                        </details>
+                        <details class="group bg-white p-4 rounded-xl border border-slate-200 cursor-pointer">
+                            <summary class="font-semibold flex justify-between items-center">
+                                Model Persistence
+                                <i data-lucide="chevron-down" class="group-open:rotate-180 transition-transform"></i>
+                            </summary>
+                            <div class="pt-4 text-sm text-slate-500">
+                                We utilize <code class="bg-slate-100 px-1 rounded text-blue-600">joblib</code> to serialize our TF-IDF vectorizer and SVM model into binary files for instant loading in production environments.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span>optimization.py</span>
+                    </div>
+                    <pre><code id="code-advanced"></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 px-6 border-t border-slate-200 text-center">
+            <p class="text-slate-400 text-sm">Generated for the Enron Data Analysis Research Paper • 2026</p>
+        </footer>
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
